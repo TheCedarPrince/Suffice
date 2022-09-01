@@ -1,6 +1,8 @@
 local cmp = require("cmp")
 local luasnip = require("luasnip")
 
+vim.opt.completeopt = {'menu', 'menuone', 'noselect'}
+
 require("luasnip/loaders/from_vscode").lazy_load()
 
 local check_backspace = function()
@@ -166,18 +168,6 @@ vim.api.nvim_create_autocmd('User', {
     -- Move to the next diagnostic
     bufmap('n', ']d', '<cmd>lua vim.diagnostic.goto_next()<cr>')
   end
-})
-
--- Turns off inline virtual test and makes a nice rounded floating border
-vim.diagnostic.config({
-  virtual_text = false,
-  severity_sort = true,
-  float = {
-    border = 'rounded',
-    source = 'always',
-    header = '',
-    prefix = '',
-  },
 })
 
 vim.lsp.handlers['textDocument/hover'] = vim.lsp.with(
