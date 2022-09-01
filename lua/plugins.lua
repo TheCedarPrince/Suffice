@@ -29,37 +29,31 @@ return require('packer').startup(function(use)
 	-- DESC: Plugins which modify the user interface like themes, statuslines, tablines, and buffers.
 	----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-	-- A theme for vim and neovim [CONFIGURED]
-	use { 'EdenEast/nightfox.nvim', config = [[require('config.nightfox')]] }
+	-- Gruvbox color scheme [CONFIGURED]
+	use { "ellisonleao/gruvbox.nvim", config = [[require('config.gruvbox')]]}
 
-	-- Lua statusline
-	use {
-		'nvim-lualine/lualine.nvim',
-		config = [[require('config.lualine')]],
-		requires = { 'kyazdani42/nvim-web-devicons', opt = true }
-	}
+	-- Lua statusline [CONFIGURED]
+	use { 'nvim-lualine/lualine.nvim', config = [[require('config.lualine')]] }
 
-	-- Utilities for pretty tabs [CONFIGURED]
+	-- Create custom submodes and menus
+	use { 'anuvyklack/hydra.nvim' }
+
+	-- Utilities for naming tabs [CONFIGURED]
 	use { 'gcmt/taboo.vim', config = [[require('config.taboo')]], requires = { 'ryanoasis/vim-devicons', opt = true } }
 
-	use { 'preservim/vim-pencil' } -- , config = [[require('config.vim-pencil')]] }
+	-- Automatic line wrapping of text files [CONFIGURED]
+	use { 'preservim/vim-pencil', ft = { 'markdown', 'text', 'rmd', 'pandoc', 'todo' }, config = [[require('config.vim-pencil')]] }
 
-	use { 'Pocco81/true-zen.nvim', config = [[require('config.true-zen')]] }
+	-- Distraction-free writing in Vim [CONFIGURED]
+	use { 'junegunn/goyo.vim', config = [[require('config.goyo')]] }
 
 	use { 'voldikss/vim-floaterm' }
 	-- TODO: Add keymaps to this
 
+	-- Continuously updated session files [CONFIGURED]
 	use { 'tpope/vim-obsession' }
-	-- TODO: Add obsession symbol to lualine
 
-
-	use {
-		'lewis6991/gitsigns.nvim',
-		config = [[require('config.gitsigns')]]
-	}
-
-
-
+	use { 'lewis6991/gitsigns.nvim', config = [[require('config.gitsigns')]] }
 
 	----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 	-- SECTION: Markup and Language Specific Plugins
@@ -71,8 +65,7 @@ return require('packer').startup(function(use)
 	-- DESC: Plugins for Julia specific usage
 	------------------------------------------------------------------------------------------------
 
-	-- Apparently this causes issues with Julia LSP
-	-- TODO: Move to graveyard
+	-- TODO: Fix autocompletion conflicts per Slack
 	-- use { 'JuliaEditorSupport/julia-vim' }
 
 	------------------------------------------------------------------------------------------------
@@ -80,26 +73,26 @@ return require('packer').startup(function(use)
 	-- DESC: Plugins for Markdown specific usage and its derivatives (pandoc, commonmark, etc.)
 	------------------------------------------------------------------------------------------------
 
-	-- Preview markdown within a browser!
-	-- WARN: See: https://github.com/iamcco/markdown-preview.nvim/issues/424
-	use {
-		'iamcco/markdown-preview.nvim',
-		run = function() vim.fn['mkdp#util#install']() end,
-		ft = { 'markdown', 'pandoc' }
-	}
+	-- Preview markdown within a browser! [CONFIGURED]
+	-- NOTE: See: https://github.com/iamcco/markdown-preview.nvim/issues/424
+	use { 'iamcco/markdown-preview.nvim', run = function() vim.fn['mkdp#util#install']() end, ft = { 'markdown', 'pandoc' }, config = [[require('config.markdown-preview')]] }
 
+	-- Interface to work with Pandoc (also required for vim-pandoc-syntax) [CONFIGURED]
 	use { 'vim-pandoc/vim-pandoc' }
 
+	-- Syntax configuration for automatically working with markdownish syntax [CONFIGURED]
 	use { 'vim-pandoc/vim-pandoc-syntax', config = [[require('config.vim-pandoc-syntax')]]}
 
-	use { 'dhruvasagar/vim-table-mode' }
+	-- Useful mappings and commands for creating and computing on tables [CONFIGURED]
+	use { 'dhruvasagar/vim-table-mode', config = [[require('config.vim-table-mode')]] }
 
 	------------------------------------------------------------------------------------------------
 	-- SUBSECTION: Todo.txt
 	-- DESC: Plugins to support the todo.txt specification
 	------------------------------------------------------------------------------------------------
 
-	use { 'dbeniamine/todo.txt-vim' }
+	-- TODO: Omnicompletion needs to be sorted out here otherwise, this doesn't really work
+	use { 'dbeniamine/todo.txt-vim', config = [[require('config.todo-txt-vim')]]}
 
 	------------------------------------------------------------------------------------------------
 	-- SUBSECTION: R
@@ -139,42 +132,34 @@ return require('packer').startup(function(use)
 	-- A two pane document outliner [CONFIGURED]
 	use { 'vim-voom/VOoM', config = [[require('config.voom')]] }
 
-	use {
-		'folke/todo-comments.nvim',
-		config = [[require('config.todo-comments')]]
-	}
-
-	-- TODO: Enable signcolumn=2 https://github.com/folke/todo-comments.nvim/issues/36#issuecomment-863215176
-
+	-- Highlight, list and search todo comments in your projects [CONFIGURED]
+	use { 'folke/todo-comments.nvim', config = [[require('config.todo-comments')]] }
 
 	----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 	-- SECTION: Language Server Protocol
 	-- DESC: Plugins which manage providers for language server protocols
 	----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-	use {
-		'williamboman/mason.nvim',
-		config = [[require('config.mason')]]
-	}
+	-- NOTE: The following three packages must be in the order given or else they will not work correctly together (this is per documentation here: https://github.com/williamboman/mason-lspconfig.nvim#setup 
 
-	use {
-		'williamboman/mason-lspconfig.nvim',
-		config = [[require('config.mason-lspconfig')]]
-	}
+	-- Portable package manager for Neovim that runs everywhere Neovim runs [CONFIGURED]
+	use { 'williamboman/mason.nvim', config = [[require('config.mason')]] }
 
+	-- Extension to mason.nvim that makes it easier to use lspconfig with mason.nvim [CONFIGURED]
+	use { 'williamboman/mason-lspconfig.nvim', config = [[require('config.mason-lspconfig')]] }
 
-	use {
-		'neovim/nvim-lspconfig',
-		config = [[require('config.nvim-lspconfig')]]
-	}
+	-- Quickstart configs for Nvim LSP [CONFIGURED]
+	use { 'neovim/nvim-lspconfig', config = [[require('config.nvim-lspconfig')]] }
 
 	----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 	-- SECTION: Autocompletion
 	-- DESC: Plugins which enable autocompletion across buffers, snippets, and LSP providers
 	----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
+	-- A completion plugin for neovim coded in Lua [CONFIGURED]
 	use { 'hrsh7th/nvim-cmp', config = [[require('config.cmp')]] }
 
+	-- nvim-cmp source for neovim builtin LSP client [CONFIGURED]
 	use { 'hrsh7th/cmp-nvim-lsp', config = [[require('config.cmp')]] }
 
 	use { 'hrsh7th/cmp-buffer', config = [[require('config.cmp')]] }
