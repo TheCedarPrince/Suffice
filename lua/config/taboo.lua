@@ -1,4 +1,4 @@
-vim.g.taboo_renamed_tab_format = ' %d %l %x ' -- Sets the renamed tab to have the format of icon, name, and close button
+vim.g.taboo_renamed_tab_format = ' %l %x ' -- Sets the renamed tab to have the format of icon, name, and close button
 
 vim.g.taboo_close_tab_label = "✖" -- Sets the close button to a cute lil' x
 
