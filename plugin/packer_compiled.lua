@@ -211,6 +211,12 @@ _G.packer_plugins = {
     path = "/home/cedarprince/.local/share/nvim/site/pack/packer/start/nvim-lspconfig",
     url = "https://github.com/neovim/nvim-lspconfig"
   },
+  ["nvim-neoclip.lua"] = {
+    config = { "require('config.nvim-neoclip')" },
+    loaded = true,
+    path = "/home/cedarprince/.local/share/nvim/site/pack/packer/start/nvim-neoclip.lua",
+    url = "https://github.com/AckslD/nvim-neoclip.lua"
+  },
   ["nvim-treesitter"] = {
     loaded = true,
     path = "/home/cedarprince/.local/share/nvim/site/pack/packer/start/nvim-treesitter",
@@ -227,6 +233,13 @@ _G.packer_plugins = {
     path = "/home/cedarprince/.local/share/nvim/site/pack/packer/start/plenary.nvim",
     url = "https://github.com/nvim-lua/plenary.nvim"
   },
+  ["sqlite.lua"] = {
+    loaded = false,
+    needs_bufread = false,
+    only_cond = false,
+    path = "/home/cedarprince/.local/share/nvim/site/pack/packer/opt/sqlite.lua",
+    url = "https://github.com/kkharji/sqlite.lua"
+  },
   ["taboo.vim"] = {
     config = { "require('config.taboo')" },
     loaded = true,
@@ -234,6 +247,7 @@ _G.packer_plugins = {
     url = "https://github.com/gcmt/taboo.vim"
   },
   ["telescope.nvim"] = {
+    config = { "require('config.telescope')" },
     loaded = true,
     path = "/home/cedarprince/.local/share/nvim/site/pack/packer/start/telescope.nvim",
     url = "https://github.com/nvim-telescope/telescope.nvim"
@@ -293,18 +307,66 @@ _G.packer_plugins = {
 }
 
 time([[Defining packer_plugins]], false)
+local module_lazy_loads = {
+  ["^sqlite"] = "sqlite.lua"
+}
+local lazy_load_called = {['packer.load'] = true}
+local function lazy_load_module(module_name)
+  local to_load = {}
+  if lazy_load_called[module_name] then return nil end
+  lazy_load_called[module_name] = true
+  for module_pat, plugin_name in pairs(module_lazy_loads) do
+    if not _G.packer_plugins[plugin_name].loaded and string.match(module_name, module_pat) then
+      to_load[#to_load + 1] = plugin_name
+    end
+  end
+
+  if #to_load > 0 then
+    require('packer.load')(to_load, {module = module_name}, _G.packer_plugins)
+    local loaded_mod = package.loaded[module_name]
+    if loaded_mod then
+      return function(modname) return loaded_mod end
+    end
+  end
+end
+
+if not vim.g.packer_custom_loader_enabled then
+  table.insert(package.loaders, 1, lazy_load_module)
+  vim.g.packer_custom_loader_enabled = true
+end
+
+-- Config for: LuaSnip
+time([[Config for LuaSnip]], true)
+require('config.completion')
+time([[Config for LuaSnip]], false)
+-- Config for: nvim-cmp
+time([[Config for nvim-cmp]], true)
+require('config.completion')
+time([[Config for nvim-cmp]], false)
+-- Config for: vim-floaterm
+time([[Config for vim-floaterm]], true)
+require('config.vim-floaterm')
+time([[Config for vim-floaterm]], false)
+-- Config for: nvim-lspconfig
+time([[Config for nvim-lspconfig]], true)
+require('config.nvim-lspconfig')
+time([[Config for nvim-lspconfig]], false)
+-- Config for: Shade.nvim
+time([[Config for Shade.nvim]], true)
+require('config.shade')
+time([[Config for Shade.nvim]], false)
 -- Config for: hop.nvim
 time([[Config for hop.nvim]], true)
 require('config.hop')
 time([[Config for hop.nvim]], false)
--- Config for: vim-table-mode
-time([[Config for vim-table-mode]], true)
-require('config.vim-table-mode')
-time([[Config for vim-table-mode]], false)
--- Config for: taboo.vim
-time([[Config for taboo.vim]], true)
-require('config.taboo')
-time([[Config for taboo.vim]], false)
+-- Config for: VOoM
+time([[Config for VOoM]], true)
+require('config.voom')
+time([[Config for VOoM]], false)
+-- Config for: friendly-snippets
+time([[Config for friendly-snippets]], true)
+require('config.completion')
+time([[Config for friendly-snippets]], false)
 -- Config for: cmp-buffer
 time([[Config for cmp-buffer]], true)
 require('config.completion')
@@ -313,96 +375,84 @@ time([[Config for cmp-buffer]], false)
 time([[Config for lualine.nvim]], true)
 require('config.lualine')
 time([[Config for lualine.nvim]], false)
--- Config for: cmp-cmdline
-time([[Config for cmp-cmdline]], true)
-require('config.completion')
-time([[Config for cmp-cmdline]], false)
--- Config for: todo-comments.nvim
-time([[Config for todo-comments.nvim]], true)
-require('config.todo-comments')
-time([[Config for todo-comments.nvim]], false)
--- Config for: cmp-nvim-lsp
-time([[Config for cmp-nvim-lsp]], true)
-require('config.completion')
-time([[Config for cmp-nvim-lsp]], false)
--- Config for: todo.txt-vim
-time([[Config for todo.txt-vim]], true)
-require('config.todo-txt-vim')
-time([[Config for todo.txt-vim]], false)
--- Config for: mason-lspconfig.nvim
-time([[Config for mason-lspconfig.nvim]], true)
-require('config.mason-lspconfig')
-time([[Config for mason-lspconfig.nvim]], false)
--- Config for: Shade.nvim
-time([[Config for Shade.nvim]], true)
-require('config.shade')
-time([[Config for Shade.nvim]], false)
--- Config for: mason.nvim
-time([[Config for mason.nvim]], true)
-require('config.mason')
-time([[Config for mason.nvim]], false)
 -- Config for: cmp_luasnip
 time([[Config for cmp_luasnip]], true)
 require('config.completion')
 time([[Config for cmp_luasnip]], false)
--- Config for: vim-floaterm
-time([[Config for vim-floaterm]], true)
-require('config.vim-floaterm')
-time([[Config for vim-floaterm]], false)
--- Config for: friendly-snippets
-time([[Config for friendly-snippets]], true)
+-- Config for: cmp-cmdline
+time([[Config for cmp-cmdline]], true)
 require('config.completion')
-time([[Config for friendly-snippets]], false)
--- Config for: VOoM
-time([[Config for VOoM]], true)
-require('config.voom')
-time([[Config for VOoM]], false)
--- Config for: nvim-lspconfig
-time([[Config for nvim-lspconfig]], true)
-require('config.nvim-lspconfig')
-time([[Config for nvim-lspconfig]], false)
--- Config for: gitsigns.nvim
-time([[Config for gitsigns.nvim]], true)
-require('config.gitsigns')
-time([[Config for gitsigns.nvim]], false)
--- Config for: nvim-cmp
-time([[Config for nvim-cmp]], true)
-require('config.completion')
-time([[Config for nvim-cmp]], false)
--- Config for: LuaSnip
-time([[Config for LuaSnip]], true)
-require('config.completion')
-time([[Config for LuaSnip]], false)
--- Config for: goyo.vim
-time([[Config for goyo.vim]], true)
-require('config.goyo')
-time([[Config for goyo.vim]], false)
--- Config for: nvim-FeMaco.lua
-time([[Config for nvim-FeMaco.lua]], true)
-require("femaco").setup()
-time([[Config for nvim-FeMaco.lua]], false)
--- Config for: vim-pandoc-syntax
-time([[Config for vim-pandoc-syntax]], true)
-require('config.vim-pandoc-syntax')
-time([[Config for vim-pandoc-syntax]], false)
--- Config for: gruvbox.nvim
-time([[Config for gruvbox.nvim]], true)
-require('config.gruvbox')
-time([[Config for gruvbox.nvim]], false)
+time([[Config for cmp-cmdline]], false)
 -- Config for: cmp-path
 time([[Config for cmp-path]], true)
 require('config.completion')
 time([[Config for cmp-path]], false)
+-- Config for: nvim-neoclip.lua
+time([[Config for nvim-neoclip.lua]], true)
+require('config.nvim-neoclip')
+time([[Config for nvim-neoclip.lua]], false)
+-- Config for: cmp-nvim-lsp
+time([[Config for cmp-nvim-lsp]], true)
+require('config.completion')
+time([[Config for cmp-nvim-lsp]], false)
+-- Config for: vim-table-mode
+time([[Config for vim-table-mode]], true)
+require('config.vim-table-mode')
+time([[Config for vim-table-mode]], false)
+-- Config for: taboo.vim
+time([[Config for taboo.vim]], true)
+require('config.taboo')
+time([[Config for taboo.vim]], false)
+-- Config for: mason-lspconfig.nvim
+time([[Config for mason-lspconfig.nvim]], true)
+require('config.mason-lspconfig')
+time([[Config for mason-lspconfig.nvim]], false)
 -- Config for: vim-pencil
 time([[Config for vim-pencil]], true)
 require('config.vim-pencil')
 time([[Config for vim-pencil]], false)
+-- Config for: telescope.nvim
+time([[Config for telescope.nvim]], true)
+require('config.telescope')
+time([[Config for telescope.nvim]], false)
+-- Config for: mason.nvim
+time([[Config for mason.nvim]], true)
+require('config.mason')
+time([[Config for mason.nvim]], false)
+-- Config for: vim-pandoc-syntax
+time([[Config for vim-pandoc-syntax]], true)
+require('config.vim-pandoc-syntax')
+time([[Config for vim-pandoc-syntax]], false)
+-- Config for: todo-comments.nvim
+time([[Config for todo-comments.nvim]], true)
+require('config.todo-comments')
+time([[Config for todo-comments.nvim]], false)
+-- Config for: nvim-FeMaco.lua
+time([[Config for nvim-FeMaco.lua]], true)
+require("femaco").setup()
+time([[Config for nvim-FeMaco.lua]], false)
+-- Config for: gruvbox.nvim
+time([[Config for gruvbox.nvim]], true)
+require('config.gruvbox')
+time([[Config for gruvbox.nvim]], false)
+-- Config for: todo.txt-vim
+time([[Config for todo.txt-vim]], true)
+require('config.todo-txt-vim')
+time([[Config for todo.txt-vim]], false)
+-- Config for: gitsigns.nvim
+time([[Config for gitsigns.nvim]], true)
+require('config.gitsigns')
+time([[Config for gitsigns.nvim]], false)
+-- Config for: goyo.vim
+time([[Config for goyo.vim]], true)
+require('config.goyo')
+time([[Config for goyo.vim]], false)
 vim.cmd [[augroup packer_load_aucmds]]
 vim.cmd [[au!]]
   -- Filetype lazy-loads
 time([[Defining lazy-load filetype autocommands]], true)
-vim.cmd [[au FileType pandoc ++once lua require("packer.load")({'markdown-preview.nvim'}, { ft = "pandoc" }, _G.packer_plugins)]]
 vim.cmd [[au FileType markdown ++once lua require("packer.load")({'markdown-preview.nvim'}, { ft = "markdown" }, _G.packer_plugins)]]
+vim.cmd [[au FileType pandoc ++once lua require("packer.load")({'markdown-preview.nvim'}, { ft = "pandoc" }, _G.packer_plugins)]]
 time([[Defining lazy-load filetype autocommands]], false)
 vim.cmd("augroup END")
 
