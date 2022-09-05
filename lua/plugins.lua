@@ -119,10 +119,20 @@ return require('packer').startup(function(use)
 	-- DESC: Plugins which improve overall navigation through files, buffers, and the file system
 	----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-	-- TODO: Configure Telescope
+	-- highly extendable fuzzy finder over lists [CONFIGURED]
 	use {
 		'nvim-telescope/telescope.nvim',
-		requires = { { 'nvim-lua/plenary.nvim' } }
+		requires = { { 'nvim-lua/plenary.nvim' } },
+		config = [[require('config.telescope')]]
+	}
+
+	-- Clipboard manager neovim plugin with telescope integration [CONFIGURED]
+	use {
+		"AckslD/nvim-neoclip.lua",
+		requires = {
+			{ 'kkharji/sqlite.lua', module = 'sqlite' },
+		},
+		config = [[require('config.nvim-neoclip')]]
 	}
 
 	-- TODO: Add Trouble: https://github.com/folke/trouble.nvim
