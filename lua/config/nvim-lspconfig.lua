@@ -1,61 +1,104 @@
--- Mappings.
--- See `:help vim.diagnostic.*` for documentation on any of the below functions
-local opts = { noremap=true, silent=true }
-vim.keymap.set('n', '<space>e', vim.diagnostic.open_float, opts)
-vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, opts)
-vim.keymap.set('n', ']d', vim.diagnostic.goto_next, opts)
-vim.keymap.set('n', '<space>q', vim.diagnostic.setloclist, opts)
+---------------------------------------------------------------------------------------------
+-- GLOBAL LSP AND DIAGNOSTIC SETTINGS
+---------------------------------------------------------------------------------------------
+
+local lsp_defaults = {
+	flags = {
+		debounce_text_changes = 150,
+	},
+	capabilities = require('cmp_nvim_lsp').update_capabilities(
+		vim.lsp.protocol.make_client_capabilities()
+	),
+	on_attach = function(client, bufnr)
+		vim.api.nvim_exec_autocmds('User', { pattern = 'LspAttached' })
+	end
+}
+
+-- Turns off inline virtual text and makes a rounded floating border for pop-ups
+vim.diagnostic.config({
+	virtual_text = false,
+	severity_sort = true,
+	float = {
+		border = 'rounded',
+		source = 'always',
+		header = '',
+		prefix = '',
+	},
+})
+
+vim.lsp.handlers['textDocument/hover'] = vim.lsp.with(
+	vim.lsp.handlers.hover,
+	{ border = 'rounded' }
+)
+
+vim.lsp.handlers['textDocument/signatureHelp'] = vim.lsp.with(
+	vim.lsp.handlers.signature_help,
+	{ border = 'rounded' }
+)
+
+-- Keeps diagnostics being updated while in insert mode
+vim.lsp.handlers["textDocument/publishDiagnostics"] =
+    	vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics,
+        {update_in_insert = true}
+)
+
+---------------------------------------------------------------------------------------------
+-- KEYMAPS FOR LSP
+---------------------------------------------------------------------------------------------
 
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
 local on_attach = function(client, bufnr)
-  -- Enable completion triggered by <c-x><c-o>
-  vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
+	-- Enable completion triggered by <c-x><c-o>
+	vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
 
-  -- Mappings.
-  -- See `:help vim.lsp.*` for documentation on any of the below functions
-  local bufopts = { noremap=true, silent=true, buffer=bufnr }
-  vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, bufopts)
-  vim.keymap.set('n', 'gd', vim.lsp.buf.definition, bufopts)
-  vim.keymap.set('n', 'K', vim.lsp.buf.hover, bufopts)
-  vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, bufopts)
-  vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, bufopts)
-  vim.keymap.set('n', '<space>wa', vim.lsp.buf.add_workspace_folder, bufopts)
-  vim.keymap.set('n', '<space>wr', vim.lsp.buf.remove_workspace_folder, bufopts)
-  vim.keymap.set('n', '<space>wl', function()
-    print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
-  end, bufopts)
-  vim.keymap.set('n', '<space>D', vim.lsp.buf.type_definition, bufopts)
-  vim.keymap.set('n', '<space>rn', vim.lsp.buf.rename, bufopts)
-  vim.keymap.set('n', '<space>ca', vim.lsp.buf.code_action, bufopts)
-  vim.keymap.set('n', 'gr', vim.lsp.buf.references, bufopts)
-  vim.keymap.set('n', '<space>f', vim.lsp.buf.formatting, bufopts)
+	local bufopts = { noremap = true, silent = true, buffer = bufnr }
+	local opts = { noremap = true, silent = true }
+
+	-- See `:help vim.lsp.*` for documentation on any of the below functions
+	-- Displays hover information about the symbol under the cursor
+	vim.keymap.set('n', 'K', vim.lsp.buf.hover, bufopts)
+	
+	-- Format file with LSP 
+	vim.keymap.set('n', '<C-f>', vim.lsp.buf.formatting, bufopts)
+
+	-- Jump to the definition
+	vim.keymap.set('n', 'gd', vim.lsp.buf.definition, bufopts)
+
+	-- Jump to declaration
+	vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, bufopts)
+
+	-- Lists all the implementations for the symbol under the cursor
+	vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, bufopts)
+
+	-- Jumps to the definition of the type symbol
+	vim.keymap.set('n', 'go', vim.lsp.buf.type_definition, bufopts)
+
+	-- Lists all the references
+	vim.keymap.set('n', 'gr', vim.lsp.buf.references, bufopts)
+
+	-- Displays a function's signature information
+	vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, bufopts)
+
+	-- Renames all references to the symbol under the cursor
+	vim.keymap.set('n', '<F2>', vim.lsp.buf.rename, bufopts)
+
+	-- Selects a code action available at the current cursor position
+	vim.keymap.set('n', '<F4>', vim.lsp.buf.code_action, bufopts)
+	vim.keymap.set('x', '<F4>', vim.lsp.buf.range_code_action, bufopts)
+
+	-- Show diagnostics in a floating window
+	vim.keymap.set('n', 'gl', vim.diagnostic.open_float, bufopts)
+
+	-- Move to the previous diagnostic
+	vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, bufopts)
+
+	-- Move to the next diagnostic
+	vim.keymap.set('n', ']d', vim.diagnostic.goto_next, bufopts)
+
+	-- See list of issues
+	vim.keymap.set('n', '<space>q', vim.diagnostic.setloclist, opts)
 end
-
-local lsp_defaults = {
-  flags = {
-    debounce_text_changes = 150,
-  },
-  capabilities = require('cmp_nvim_lsp').update_capabilities(
-    vim.lsp.protocol.make_client_capabilities()
-  ),
-  on_attach = function(client, bufnr)
-    vim.api.nvim_exec_autocmds('User', {pattern = 'LspAttached'})
-  end
-}
-
--- Turns off inline virtual text and makes a nice rounded floating border for pop-ups
-vim.diagnostic.config({
-  virtual_text = false,
-  severity_sort = true,
-  float = {
-    border = 'rounded',
-    source = 'always',
-    header = '',
-    prefix = '',
-  },
-})
-
 
 ---------------------------------------------------------------------------------------------
 -- SPECIFIC LANGUAGE SERVER CONFIGURATIONS PROVIDED BY nvim-lspconfig
