@@ -1,0 +1,134 @@
+snippet log "Project Log Entry"
+	# ${CURRENT_MONTH_NAME} ${CURRENT_DATE} ${CURRENT_YEAR}
+
+	$1
+
+snippet meeting "Meeting Notes Template"
+	# ${CURRENT_MONTH_NAME} ${CURRENT_DATE} ${CURRENT_YEAR}
+
+	## Meeting Summary
+
+	**In Attendance:** $1
+
+	**Location:** $2
+
+	**Summary:** $5
+
+	**Keywords:** $3
+
+	## Meeting Outcomes
+
+	### Short-Term Outcomes
+
+	$6
+
+	### Long-Term Outcomes
+
+	$7
+
+	## Meeting Notes
+
+	$4
+
+snippet zettel "Note for Zettelkasten"
+	# $1
+
+	**Date:** ${CURRENT_MONTH_NAME} ${CURRENT_DATE} ${CURRENT_YEAR}
+
+	**Summary:** $4
+
+	**Keywords:** $5
+
+	## Bibliography
+
+	$2
+
+	## Notes
+
+	$3
+
+	## References:
+
+snippet julia "Julia code block"
+
+	\`\`\`julia
+	$1
+	\`\`\`
+
+snippet jmdreport "Environment set up for a Julia Markdown file"
+	# Initial Set-Up
+
+	## Activating Project Environment
+
+	\`\`\`julia
+	using DrWatson
+	@quickactivate "$1"
+	\`\`\`
+
+	## Packages Used in Analysis
+
+	\`\`\`julia
+	$2
+	\`\`\`
+
+	Package descriptions:
+
+	- [\`Arrow\`](https://github.com/JuliaData/Arrow.jl) - Pure Julia implementation of the apache arrow data format
+
+	- [\`CairoMakie\`](https://github.com/JuliaPlots/Makie.jl/tree/master/CairoMakie) - Backend for Makie to produce static vector graphics at publication quality
+
+	- [\`CSV\`](https://github.com/JuliaData/CSV.jl) - Julia's multi-threaded CSV reader
+
+	- [\`Dates\`](https://docs.julialang.org/en/v1/stdlib/Dates/) - Julia's builtin module for working with dates
+
+	- [\`DataFrames\`](https://github.com/JuliaData/DataFrames.jl) - Julia's dataframe handler for easily manipulating data
+
+	- [\`DSP\`](https://github.com/JuliaDSP/DSP.jl) - Filter design, periodograms, window functions, and other digital signal processing functionality 
+
+	- [\`DrWatson\`](https://github.com/JuliaDynamics/DrWatson.jl) - Incredibly helpful tool for managing Julia-based scientific experiments and exploration
+
+	- [\`Latexify\`](https://github.com/korsbo/Latexify.jl) - Enables the conversion of Julia objects to other formats such as LaTeX or Markdown
+
+	- [\`Makie\`](https://github.com/JuliaPlots/Makie.jl) - Data visualization ecosystem for the Julia programming language, with high performance and extensibility
+
+	- [\`PrettyTables\`](https://github.com/ronisbr/PrettyTables.jl) - Printing pretty tables for nice references
+
+	- [\`PyPlot\`](https://github.com/JuliaPy/PyPlot.jl) - Julia interface to the \`matplotlib\` plotting library
+
+	- [\`Statistics\`](https://github.com/JuliaLang/Statistics.jl) - Julia's standard library for useful statistical methods
+
+	- [\`TimeSeries\`](https://github.com/JuliaStats/TimeSeries.jl) - Package for working with time series data and functions such as moving averages
+
+	- [\`Weave\`](https://github.com/JunoLab/Weave.jl) - Converts Julia Markdown files to other forms of output
+
+	# Introduction
+
+	# Pre-Processing Data
+
+	# Generating Summary Trends
+
+	# File Exports 
+
+	## Export Julia Markdown Document as Jupyter Notebook
+
+	We can execute the following to turn this report into a Jupyter Notebook:
+
+	\`\`\`julia, eval = false
+	convert_doc([FILENAME], projectdir("notebooks", [OUTPUTNAME.ipynb]))
+	\`\`\`
+
+	## Export Julia Markdown Document as an HTML Document
+
+	We can execute the following to turn this report into a Jupyter Notebook:
+
+	\`\`\`julia, eval = false
+	weave([FILENAME], [OUTPUTNAME.html])
+	\`\`\`
+
+	## Export Julia Markdown Document as a Script
+
+	We can execute the following to turn this report into a script for standalone execution:
+
+	\`\`\`julia, eval = false
+	weave([FILENAME], projectdir("scripts", [OUTPUTNAME.jl]))
+	\`\`\`
