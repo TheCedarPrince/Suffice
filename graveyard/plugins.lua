@@ -12,3 +12,7 @@
 -- REMOVAL REASON: Although I really liked this, it is just not mature enough and I found it cumbersome to configure when it didn't work just yet out of the box - switching back to Goyo
 -- use { 'Pocco81/true-zen.nvim', config = [[require('config.true-zen')]] }
 
+-- Plugin that dims your inactive windows [CONFIGURED]
+-- REMOVAL REASON: Weirdly kept breaking my windows and throwing random errors about not being able to connect to windows
+-- use { 'sunjon/Shade.nvim', config = [[require('config.shade')]] }
+
