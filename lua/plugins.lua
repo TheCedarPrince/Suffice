@@ -29,14 +29,14 @@ return require('packer').startup(function(use)
 	-- DESC: Plugins which modify the user interface like themes, statuslines, tablines, and buffers.
 	----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
+	-- Bookmark and annotation tool 
+	use { 'MattesGroeger/vim-bookmarks' }
+
 	-- Gruvbox color scheme [CONFIGURED]
 	use { "ellisonleao/gruvbox.nvim", config = [[require('config.gruvbox')]] }
 
 	-- Lua statusline [CONFIGURED]
 	use { 'nvim-lualine/lualine.nvim', config = [[require('config.lualine')]] }
-
-	-- Plugin that dims your inactive windows [CONFIGURED]
-	use { 'sunjon/Shade.nvim', config = [[require('config.shade')]] }
 
 	-- Create custom submodes and menus
 	use { 'anuvyklack/hydra.nvim' }
@@ -119,7 +119,16 @@ return require('packer').startup(function(use)
 	-- DESC: Plugins which improve overall navigation through files, buffers, and the file system
 	----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-	-- highly extendable fuzzy finder over lists [CONFIGURED]
+	------------------------------------------------------------------------------------------------
+	-- SUBSECTION: Telescope
+	-- DESC: Plugins for Telescope and its associated extensions
+	------------------------------------------------------------------------------------------------
+
+	-- Integrates vim-bookmarks into telescope.nvim
+	-- TODO: Merge nvim-neoclip config to telescope config
+	use { 'tom-anders/telescope-vim-bookmarks.nvim' }
+
+	-- Highly extendable fuzzy finder over lists [CONFIGURED]
 	use {
 		'nvim-telescope/telescope.nvim',
 		requires = { { 'nvim-lua/plenary.nvim' } },
@@ -127,6 +136,7 @@ return require('packer').startup(function(use)
 	}
 
 	-- Clipboard manager neovim plugin with telescope integration [CONFIGURED]
+	-- TODO: Merge nvim-neoclip config to telescope config
 	use {
 		"AckslD/nvim-neoclip.lua",
 		requires = {
@@ -134,6 +144,11 @@ return require('packer').startup(function(use)
 		},
 		config = [[require('config.nvim-neoclip')]]
 	}
+
+	------------------------------------------------------------------------------------------------
+	-- SUBSECTION: 
+	-- DESC: 
+	------------------------------------------------------------------------------------------------
 
 	-- TODO: Add Trouble: https://github.com/folke/trouble.nvim
 
