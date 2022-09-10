@@ -19,6 +19,9 @@ function! s:goyo_leave()
   syntax off 
   syntax on 
 
+  " Makes the signcolumn match the background colorscheme
+  highlight clear SignColumn
+
   " Brings mode back
   set showmode 
 
