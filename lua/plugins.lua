@@ -29,6 +29,9 @@ return require('packer').startup(function(use)
 	-- DESC: Plugins which modify the user interface like themes, statuslines, tablines, and buffers.
 	----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
+	-- Lua powered greeter dashboard
+	use { 'goolord/alpha-nvim', requires = { 'kyazdani42/nvim-web-devicons'}, config = [[require('config.alpha-nvim')]] }
+
 	-- Bookmark and annotation tool 
 	use { 'MattesGroeger/vim-bookmarks' }
 
@@ -128,14 +131,14 @@ return require('packer').startup(function(use)
 	-- TODO: Merge nvim-neoclip config to telescope config
 	use { 'tom-anders/telescope-vim-bookmarks.nvim' }
 
-	-- Highly extendable fuzzy finder over lists [CONFIGURED]
+	-- Highly extendable fuzzy finder over lists
 	use {
 		'nvim-telescope/telescope.nvim',
 		requires = { { 'nvim-lua/plenary.nvim' } },
 		config = [[require('config.telescope')]]
 	}
 
-	-- Clipboard manager neovim plugin with telescope integration [CONFIGURED]
+	-- Clipboard manager neovim plugin with telescope integration
 	-- TODO: Merge nvim-neoclip config to telescope config
 	use {
 		"AckslD/nvim-neoclip.lua",
