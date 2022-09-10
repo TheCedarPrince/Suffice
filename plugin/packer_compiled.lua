@@ -91,6 +91,12 @@ _G.packer_plugins = {
     path = "/home/jzelko3@icl.gtri.org/.local/share/nvim/site/pack/packer/start/VOoM",
     url = "https://github.com/vim-voom/VOoM"
   },
+  ["alpha-nvim"] = {
+    config = { "require('config.alpha-nvim')" },
+    loaded = true,
+    path = "/home/jzelko3@icl.gtri.org/.local/share/nvim/site/pack/packer/start/alpha-nvim",
+    url = "https://github.com/goolord/alpha-nvim"
+  },
   ["cmp-buffer"] = {
     config = { "require('config.completion')" },
     loaded = true,
@@ -215,6 +221,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/jzelko3@icl.gtri.org/.local/share/nvim/site/pack/packer/start/nvim-treesitter",
     url = "https://github.com/nvim-treesitter/nvim-treesitter"
+  },
+  ["nvim-web-devicons"] = {
+    loaded = true,
+    path = "/home/jzelko3@icl.gtri.org/.local/share/nvim/site/pack/packer/start/nvim-web-devicons",
+    url = "https://github.com/kyazdani42/nvim-web-devicons"
   },
   ["packer.nvim"] = {
     loaded = false,
@@ -343,10 +354,10 @@ end
 time([[Config for hop.nvim]], true)
 require('config.hop')
 time([[Config for hop.nvim]], false)
--- Config for: vim-pandoc-syntax
-time([[Config for vim-pandoc-syntax]], true)
-require('config.vim-pandoc-syntax')
-time([[Config for vim-pandoc-syntax]], false)
+-- Config for: goyo.vim
+time([[Config for goyo.vim]], true)
+require('config.goyo')
+time([[Config for goyo.vim]], false)
 -- Config for: nvim-cmp
 time([[Config for nvim-cmp]], true)
 require('config.completion')
@@ -359,14 +370,18 @@ time([[Config for gruvbox.nvim]], false)
 time([[Config for vim-pencil]], true)
 require('config.vim-pencil')
 time([[Config for vim-pencil]], false)
--- Config for: cmp-cmdline
-time([[Config for cmp-cmdline]], true)
-require('config.completion')
-time([[Config for cmp-cmdline]], false)
+-- Config for: alpha-nvim
+time([[Config for alpha-nvim]], true)
+require('config.alpha-nvim')
+time([[Config for alpha-nvim]], false)
 -- Config for: lualine.nvim
 time([[Config for lualine.nvim]], true)
 require('config.lualine')
 time([[Config for lualine.nvim]], false)
+-- Config for: nvim-lspconfig
+time([[Config for nvim-lspconfig]], true)
+require('config.nvim-lspconfig')
+time([[Config for nvim-lspconfig]], false)
 -- Config for: LuaSnip
 time([[Config for LuaSnip]], true)
 require('config.completion')
@@ -375,10 +390,10 @@ time([[Config for LuaSnip]], false)
 time([[Config for friendly-snippets]], true)
 require('config.completion')
 time([[Config for friendly-snippets]], false)
--- Config for: cmp-nvim-lsp
-time([[Config for cmp-nvim-lsp]], true)
-require('config.completion')
-time([[Config for cmp-nvim-lsp]], false)
+-- Config for: vim-floaterm
+time([[Config for vim-floaterm]], true)
+require('config.vim-floaterm')
+time([[Config for vim-floaterm]], false)
 -- Config for: VOoM
 time([[Config for VOoM]], true)
 require('config.voom')
@@ -395,10 +410,10 @@ time([[Config for telescope.nvim]], false)
 time([[Config for cmp_luasnip]], true)
 require('config.completion')
 time([[Config for cmp_luasnip]], false)
--- Config for: mason.nvim
-time([[Config for mason.nvim]], true)
-require('config.mason')
-time([[Config for mason.nvim]], false)
+-- Config for: vim-pandoc-syntax
+time([[Config for vim-pandoc-syntax]], true)
+require('config.vim-pandoc-syntax')
+time([[Config for vim-pandoc-syntax]], false)
 -- Config for: mason-lspconfig.nvim
 time([[Config for mason-lspconfig.nvim]], true)
 require('config.mason-lspconfig')
@@ -411,10 +426,10 @@ time([[Config for taboo.vim]], false)
 time([[Config for cmp-path]], true)
 require('config.completion')
 time([[Config for cmp-path]], false)
--- Config for: goyo.vim
-time([[Config for goyo.vim]], true)
-require('config.goyo')
-time([[Config for goyo.vim]], false)
+-- Config for: gitsigns.nvim
+time([[Config for gitsigns.nvim]], true)
+require('config.gitsigns')
+time([[Config for gitsigns.nvim]], false)
 -- Config for: todo.txt-vim
 time([[Config for todo.txt-vim]], true)
 require('config.todo-txt-vim')
@@ -431,22 +446,22 @@ time([[Config for vim-table-mode]], false)
 time([[Config for todo-comments.nvim]], true)
 require('config.todo-comments')
 time([[Config for todo-comments.nvim]], false)
--- Config for: vim-floaterm
-time([[Config for vim-floaterm]], true)
-require('config.vim-floaterm')
-time([[Config for vim-floaterm]], false)
 -- Config for: nvim-neoclip.lua
 time([[Config for nvim-neoclip.lua]], true)
 require('config.nvim-neoclip')
 time([[Config for nvim-neoclip.lua]], false)
--- Config for: gitsigns.nvim
-time([[Config for gitsigns.nvim]], true)
-require('config.gitsigns')
-time([[Config for gitsigns.nvim]], false)
--- Config for: nvim-lspconfig
-time([[Config for nvim-lspconfig]], true)
-require('config.nvim-lspconfig')
-time([[Config for nvim-lspconfig]], false)
+-- Config for: cmp-cmdline
+time([[Config for cmp-cmdline]], true)
+require('config.completion')
+time([[Config for cmp-cmdline]], false)
+-- Config for: cmp-nvim-lsp
+time([[Config for cmp-nvim-lsp]], true)
+require('config.completion')
+time([[Config for cmp-nvim-lsp]], false)
+-- Config for: mason.nvim
+time([[Config for mason.nvim]], true)
+require('config.mason')
+time([[Config for mason.nvim]], false)
 vim.cmd [[augroup packer_load_aucmds]]
 vim.cmd [[au!]]
   -- Filetype lazy-loads
