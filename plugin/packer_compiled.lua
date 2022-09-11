@@ -163,9 +163,10 @@ _G.packer_plugins = {
     url = "https://github.com/anuvyklack/hydra.nvim"
   },
   ["julia-vim"] = {
+    config = { "require('config.julia-vim')" },
     loaded = true,
     path = "/home/jzelko3@icl.gtri.org/.local/share/nvim/site/pack/packer/start/julia-vim",
-    url = "https://github.com/JuliaEditorSupport/julia-vim"
+    url = "https://github.com/ExpandingMan/julia-vim"
   },
   ["lualine.nvim"] = {
     config = { "require('config.lualine')" },
@@ -374,14 +375,14 @@ time([[Config for vim-pencil]], false)
 time([[Config for alpha-nvim]], true)
 require('config.alpha-nvim')
 time([[Config for alpha-nvim]], false)
--- Config for: lualine.nvim
-time([[Config for lualine.nvim]], true)
-require('config.lualine')
-time([[Config for lualine.nvim]], false)
 -- Config for: nvim-lspconfig
 time([[Config for nvim-lspconfig]], true)
 require('config.nvim-lspconfig')
 time([[Config for nvim-lspconfig]], false)
+-- Config for: lualine.nvim
+time([[Config for lualine.nvim]], true)
+require('config.lualine')
+time([[Config for lualine.nvim]], false)
 -- Config for: LuaSnip
 time([[Config for LuaSnip]], true)
 require('config.completion')
@@ -394,6 +395,10 @@ time([[Config for friendly-snippets]], false)
 time([[Config for vim-floaterm]], true)
 require('config.vim-floaterm')
 time([[Config for vim-floaterm]], false)
+-- Config for: vim-pandoc-syntax
+time([[Config for vim-pandoc-syntax]], true)
+require('config.vim-pandoc-syntax')
+time([[Config for vim-pandoc-syntax]], false)
 -- Config for: VOoM
 time([[Config for VOoM]], true)
 require('config.voom')
@@ -410,10 +415,10 @@ time([[Config for telescope.nvim]], false)
 time([[Config for cmp_luasnip]], true)
 require('config.completion')
 time([[Config for cmp_luasnip]], false)
--- Config for: vim-pandoc-syntax
-time([[Config for vim-pandoc-syntax]], true)
-require('config.vim-pandoc-syntax')
-time([[Config for vim-pandoc-syntax]], false)
+-- Config for: nvim-neoclip.lua
+time([[Config for nvim-neoclip.lua]], true)
+require('config.nvim-neoclip')
+time([[Config for nvim-neoclip.lua]], false)
 -- Config for: mason-lspconfig.nvim
 time([[Config for mason-lspconfig.nvim]], true)
 require('config.mason-lspconfig')
@@ -446,10 +451,10 @@ time([[Config for vim-table-mode]], false)
 time([[Config for todo-comments.nvim]], true)
 require('config.todo-comments')
 time([[Config for todo-comments.nvim]], false)
--- Config for: nvim-neoclip.lua
-time([[Config for nvim-neoclip.lua]], true)
-require('config.nvim-neoclip')
-time([[Config for nvim-neoclip.lua]], false)
+-- Config for: julia-vim
+time([[Config for julia-vim]], true)
+require('config.julia-vim')
+time([[Config for julia-vim]], false)
 -- Config for: cmp-cmdline
 time([[Config for cmp-cmdline]], true)
 require('config.completion')
