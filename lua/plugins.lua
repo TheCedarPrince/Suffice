@@ -77,7 +77,7 @@ return require('packer').startup(function(use)
 	------------------------------------------------------------------------------------------------
 
 	-- Vim support for Julia [CONFIGURED]
-	use { 'JuliaEditorSupport/julia-vim' }
+	use { 'ExpandingMan/julia-vim', config = [[require('config.julia-vim')]] }
 
 	------------------------------------------------------------------------------------------------
 	-- SUBSECTION: Markdown
