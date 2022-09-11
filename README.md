@@ -15,7 +15,8 @@ It will always be under construction as I seek to improve it.
 
 ## Technical Details
 
-I tried to configure this configuration mostly in Lua in light of the Vimscript 9 divergence slowly occurring between Vim and Neovim although it does use Vimscript where it makes sense here and there.
+I tried to configure this configuration mostly in Lua in light of the Vimscript 9 divergence slowly occurring between Vim and Neovim.
+The only places where `vimscript` is seen is in the `snippets/` directory.
 
 - **Package Manager:** Packer
 - **Neovim Version Required:** 0.7.0
