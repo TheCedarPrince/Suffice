@@ -32,6 +32,9 @@ return require('packer').startup(function(use)
 	-- Lua powered greeter dashboard
 	use { 'goolord/alpha-nvim', requires = { 'kyazdani42/nvim-web-devicons'}, config = [[require('config.alpha-nvim')]] }
 
+	-- Foldtext customization and folded region preview in Neovim
+	use{ 'anuvyklack/pretty-fold.nvim', requires = { 'anuvyklack/fold-preview.nvim', 'anuvyklack/keymap-amend.nvim' }, config = [[require('config.pretty-fold')]] }
+
 	-- Bookmark and annotation tool 
 	use { 'MattesGroeger/vim-bookmarks' }
 
@@ -77,7 +80,7 @@ return require('packer').startup(function(use)
 	------------------------------------------------------------------------------------------------
 
 	-- Vim support for Julia [CONFIGURED]
-	use { 'ExpandingMan/julia-vim', config = [[require('config.julia-vim')]] }
+	use { 'JuliaEditorSupport/julia-vim', config = [[require('config.julia-vim')]] }
 
 	------------------------------------------------------------------------------------------------
 	-- SUBSECTION: Markdown
