@@ -104,6 +104,14 @@ return require('packer').startup(function(use)
 
 	-- Useful mappings and commands for creating and computing on tables [CONFIGURED]
 	use { 'dhruvasagar/vim-table-mode', config = [[require('config.vim-table-mode')]] }
+	
+	------------------------------------------------------------------------------------------------
+	-- SUBSECTION: LaTeX
+	-- DESC: Plugins for LaTeX specific usage 
+	------------------------------------------------------------------------------------------------
+
+	-- A modern Vim and neovim filetype plugin for LaTeX files
+	use { 'lervag/vimtex', config = [[require('config.vimtex')]] }
 
 	------------------------------------------------------------------------------------------------
 	-- SUBSECTION: Todo.txt
