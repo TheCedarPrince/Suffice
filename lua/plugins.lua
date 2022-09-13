@@ -81,6 +81,14 @@ return require('packer').startup(function(use)
 
 	-- Vim support for Julia [CONFIGURED]
 	use { 'JuliaEditorSupport/julia-vim', config = [[require('config.julia-vim')]] }
+	
+	------------------------------------------------------------------------------------------------
+	-- SUBSECTION: Jupyter 
+	-- DESC: Plugins for Jupyter Notebook specific usage
+	------------------------------------------------------------------------------------------------
+
+	use { 'goerz/jupytext.vim' }
+
 
 	------------------------------------------------------------------------------------------------
 	-- SUBSECTION: Markdown
@@ -106,6 +114,13 @@ return require('packer').startup(function(use)
 	use { 'dhruvasagar/vim-table-mode', config = [[require('config.vim-table-mode')]] }
 	
 	------------------------------------------------------------------------------------------------
+	-- SUBSECTION: R
+	-- DESC: Plugins for R specific usage
+	------------------------------------------------------------------------------------------------
+
+	use { 'jalvesaq/Nvim-R' }
+
+	------------------------------------------------------------------------------------------------
 	-- SUBSECTION: LaTeX
 	-- DESC: Plugins for LaTeX specific usage 
 	------------------------------------------------------------------------------------------------
@@ -120,13 +135,6 @@ return require('packer').startup(function(use)
 
 	-- BUG: Omnicompletion needs to be sorted out here otherwise, this doesn't really work
 	use { 'dbeniamine/todo.txt-vim', config = [[require('config.todo-txt-vim')]] }
-
-	------------------------------------------------------------------------------------------------
-	-- SUBSECTION: R
-	-- DESC: Plugins for R specific usage
-	------------------------------------------------------------------------------------------------
-
-	use { 'jalvesaq/Nvim-R' }
 
 	----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 	-- SECTION: Navigation
