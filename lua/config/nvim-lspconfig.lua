@@ -163,3 +163,9 @@ require 'lspconfig'.pylsp.setup {
 	on_attach = on_attach,
 	flags = lsp_defaults
 }
+
+require'lspconfig'.texlab.setup{
+	on_attach = on_attach,
+	flags = lsp_defaults,
+	latexFormatter = 'texlab'
+}
