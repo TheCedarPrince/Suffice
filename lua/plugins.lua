@@ -69,6 +69,9 @@ return require('packer').startup(function(use)
 	-- Git integration for buffers [CONFIGURED]
 	use { 'lewis6991/gitsigns.nvim', config = [[require('config.gitsigns')]] }
 
+	-- Neovim plugin to centre your buffer by creating a persistent scratchpad [CONFIGURED]
+	use { 'FraserLee/ScratchPad', config = [[require('config.scratchpad')]] }
+
 	----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 	-- SECTION: Markup and Language Specific Plugins
 	-- DESC: Plugin groups which are specific to a given language or markup
