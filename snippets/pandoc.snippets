@@ -62,16 +62,16 @@ snippet jmdreport "Environment set up for a Julia Markdown file"
 
 	## Activating Project Environment
 
-	\`\`\`julia
+	```julia
 	using DrWatson
 	@quickactivate "$1"
-	\`\`\`
+	```
 
 	## Packages Used in Analysis
 
-	\`\`\`julia
+	```julia
 	$2
-	\`\`\`
+	```
 
 	Package descriptions:
 
@@ -115,22 +115,22 @@ snippet jmdreport "Environment set up for a Julia Markdown file"
 
 	We can execute the following to turn this report into a Jupyter Notebook:
 
-	\`\`\`julia, eval = false
+	\\\julia, eval = false
 	convert_doc([FILENAME], projectdir("notebooks", [OUTPUTNAME.ipynb]))
-	\`\`\`
+	\\\
 
 	## Export Julia Markdown Document as an HTML Document
 
 	We can execute the following to turn this report into a Jupyter Notebook:
 
-	\`\`\`julia, eval = false
+	\\\julia, eval = false
 	weave([FILENAME], [OUTPUTNAME.html])
-	\`\`\`
+	\\\
 
 	## Export Julia Markdown Document as a Script
 
 	We can execute the following to turn this report into a script for standalone execution:
 
-	\`\`\`julia, eval = false
+	\\\julia, eval = false
 	weave([FILENAME], projectdir("scripts", [OUTPUTNAME.jl]))
-	\`\`\`
+	\\\
