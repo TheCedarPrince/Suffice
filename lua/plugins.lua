@@ -72,6 +72,8 @@ return require('packer').startup(function(use)
 	-- Neovim plugin to centre your buffer by creating a persistent scratchpad [CONFIGURED]
 	use { 'FraserLee/ScratchPad', config = [[require('config.scratchpad')]] }
 
+	-- Changes Vim working directory to project root
+	use { 'airblade/vim-rooter' }
 	----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 	-- SECTION: Markup and Language Specific Plugins
 	-- DESC: Plugin groups which are specific to a given language or markup
