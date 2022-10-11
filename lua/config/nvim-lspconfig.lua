@@ -38,8 +38,8 @@ vim.lsp.handlers['textDocument/signatureHelp'] = vim.lsp.with(
 
 -- Keeps diagnostics being updated while in insert mode
 vim.lsp.handlers["textDocument/publishDiagnostics"] =
-    	vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics,
-        {update_in_insert = true}
+vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics,
+	{ update_in_insert = true }
 )
 
 ---------------------------------------------------------------------------------------------
@@ -58,8 +58,8 @@ local on_attach = function(client, bufnr)
 	-- See `:help vim.lsp.*` for documentation on any of the below functions
 	-- Displays hover information about the symbol under the cursor
 	vim.keymap.set('n', 'K', vim.lsp.buf.hover, bufopts)
-	
-	-- Format file with LSP 
+
+	-- Format file with LSP
 	vim.keymap.set('n', '<C-f>', vim.lsp.buf.formatting, bufopts)
 
 	-- Jump to the definition
@@ -164,7 +164,7 @@ require 'lspconfig'.pylsp.setup {
 	flags = lsp_defaults
 }
 
-require'lspconfig'.texlab.setup{
+require 'lspconfig'.texlab.setup {
 	on_attach = on_attach,
 	flags = lsp_defaults,
 	latexFormatter = 'texlab'
