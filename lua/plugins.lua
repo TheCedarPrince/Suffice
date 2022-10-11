@@ -30,12 +30,13 @@ return require('packer').startup(function(use)
 	----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 	-- Lua powered greeter dashboard
-	use { 'goolord/alpha-nvim', requires = { 'kyazdani42/nvim-web-devicons'}, config = [[require('config.alpha-nvim')]] }
+	use { 'goolord/alpha-nvim', requires = { 'kyazdani42/nvim-web-devicons' }, config = [[require('config.alpha-nvim')]] }
 
 	-- Foldtext customization and folded region preview in Neovim
-	use{ 'anuvyklack/pretty-fold.nvim', requires = { 'anuvyklack/fold-preview.nvim', 'anuvyklack/keymap-amend.nvim' }, config = [[require('config.pretty-fold')]] }
+	use { 'anuvyklack/pretty-fold.nvim', requires = { 'anuvyklack/fold-preview.nvim', 'anuvyklack/keymap-amend.nvim' },
+		config = [[require('config.pretty-fold')]] }
 
-	-- Bookmark and annotation tool 
+	-- Bookmark and annotation tool
 	use { 'MattesGroeger/vim-bookmarks' }
 
 	-- Gruvbox color scheme [CONFIGURED]
@@ -74,6 +75,12 @@ return require('packer').startup(function(use)
 
 	-- Changes Vim working directory to project root
 	use { 'airblade/vim-rooter' }
+
+	-- Floating winbar statuslines for Neovim
+	use { 'b0o/incline.nvim', config = [[require('config.incline')]] }
+
+	-- TODO: add https://github.com/preservim/nerdcommenter for commenting superpowers
+
 	----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 	-- SECTION: Markup and Language Specific Plugins
 	-- DESC: Plugin groups which are specific to a given language or markup
@@ -86,9 +93,9 @@ return require('packer').startup(function(use)
 
 	-- Vim support for Julia [CONFIGURED]
 	use { 'JuliaEditorSupport/julia-vim', config = [[require('config.julia-vim')]] }
-	
+
 	------------------------------------------------------------------------------------------------
-	-- SUBSECTION: Jupyter 
+	-- SUBSECTION: Jupyter
 	-- DESC: Plugins for Jupyter Notebook specific usage
 	------------------------------------------------------------------------------------------------
 
@@ -117,7 +124,7 @@ return require('packer').startup(function(use)
 
 	-- Useful mappings and commands for creating and computing on tables [CONFIGURED]
 	use { 'dhruvasagar/vim-table-mode', config = [[require('config.vim-table-mode')]] }
-	
+
 	------------------------------------------------------------------------------------------------
 	-- SUBSECTION: R
 	-- DESC: Plugins for R specific usage
@@ -127,7 +134,7 @@ return require('packer').startup(function(use)
 
 	------------------------------------------------------------------------------------------------
 	-- SUBSECTION: LaTeX
-	-- DESC: Plugins for LaTeX specific usage 
+	-- DESC: Plugins for LaTeX specific usage
 	------------------------------------------------------------------------------------------------
 
 	-- A modern Vim and neovim filetype plugin for LaTeX files
@@ -164,17 +171,17 @@ return require('packer').startup(function(use)
 
 	-- Clipboard manager neovim plugin with telescope integration
 	-- TODO: Merge nvim-neoclip config to telescope config
-	use {
-		"AckslD/nvim-neoclip.lua",
-		requires = {
-			{ 'kkharji/sqlite.lua', module = 'sqlite' },
-		},
-		config = [[require('config.nvim-neoclip')]]
-	}
+	-- use {
+	--	"AckslD/nvim-neoclip.lua",
+	--	requires = {
+	--		{ 'kkharji/sqlite.lua', module = 'sqlite' },
+	--	},
+	--	config = [[require('config.nvim-neoclip')]]
+	-- }
 
 	------------------------------------------------------------------------------------------------
-	-- SUBSECTION: 
-	-- DESC: 
+	-- SUBSECTION:
+	-- DESC:
 	------------------------------------------------------------------------------------------------
 
 	-- TODO: Add Trouble: https://github.com/folke/trouble.nvim

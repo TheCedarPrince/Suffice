@@ -43,11 +43,11 @@ require('neoclip').setup({
 }
 )
 
-require('telescope').load_extension('macroscope')
+-- require('telescope').load_extension('macroscope')
 
 function map(mode, bind, action) 
    vim.api.nvim_set_keymap(mode, bind, action .. "<cr>", { noremap = true, silent = true });
 end
 
-map("n", "<C-n>", ":Telescope neoclip")
-map('n', '<A-m>', ':Telescope macroscope')
+-- map("n", "<C-n>", ":Telescope neoclip")
+-- map('n', '<A-m>', ':Telescope macroscope')
