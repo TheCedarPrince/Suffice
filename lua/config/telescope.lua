@@ -32,7 +32,7 @@ require('telescope').setup {
 	}
 }
 
-require('telescope').load_extension('neoclip')
+-- require('telescope').load_extension('neoclip')
 
 function map(mode, bind, action)
 	vim.api.nvim_set_keymap(mode, bind, action .. "<cr>", { noremap = true, silent = true });
