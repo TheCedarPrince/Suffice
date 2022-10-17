@@ -28,6 +28,9 @@ function! s:goyo_leave()
   " Shows lualine again
   lua require"lualine".hide({unhide=true})
 
+  " Recreate incline functionality
+  lua require'incline'.setup{}
+
   " ...
 endfunction
 autocmd! User GoyoEnter nested call <SID>goyo_enter()
