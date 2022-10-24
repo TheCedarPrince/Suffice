@@ -5,4 +5,4 @@ vim.g['pandoc#completion#bib#use_preview'] = 1 -- Display additional bibliograph
 vim.g['pandoc#completion#bib#mode'] = 'citeproc' -- What backend to use
 vim.g['pandoc#hypertext#split_open_cmd'] = 'vsplit' -- How to split-open files
 vim.g['pandoc#hypertext#autosave_on_edit_open_link'] = 1 -- Automatically save current file when following link in same window
-vim.g['pandoc#syntax#codeblocks#embeds#langs'] = {'json', 'julia', 'python', 'haskell', 'r', 'markdown', 'lua', 'make', 'sh', 'sql'} -- Syntax highlighting for fenced markdown code blocks 
+vim.g['pandoc#syntax#codeblocks#embeds#langs'] = {'json', 'julia', 'python', 'haskell', 'r', 'tex', 'markdown', 'lua', 'make', 'sh', 'sql'} -- Syntax highlighting for fenced markdown code blocks 
