@@ -20,3 +20,4 @@ vim.api.nvim_create_autocmd({ "BufEnter", "CursorHold", "CursorHoldI", "FocusGai
   pattern = { "*" },
 })
 
+-- vim.o.cmdheight = 0 -- Set command height to 0
