@@ -108,6 +108,7 @@ cmp.setup({
 				buffer = "",
 				path = "",
 				emoji = "",
+				["vim-dadbod-completion"] = "[DB]",
 			})[entry.source.name]
 			return vim_item
 		end,
@@ -120,6 +121,7 @@ cmp.setup({
 		{ name = "luasnip" },
 		{ name = "buffer"},
 		{ name = "path" },
+    		{ name = "vim-dadbod-completion" }
 	},
 
 	-- Options for confirmation
