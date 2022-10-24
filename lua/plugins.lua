@@ -133,6 +133,20 @@ return require('packer').startup(function(use)
 	use { 'jalvesaq/Nvim-R' }
 
 	------------------------------------------------------------------------------------------------
+	-- SUBSECTION: SQL
+	-- DESC: Plugins for SQL specific usage
+	------------------------------------------------------------------------------------------------
+
+	-- Modern database interface for Vim
+	use { 'tpope/vim-dadbod' }
+
+	-- Database auto completion powered by vim-dadbod
+	use { 'kristijanhusak/vim-dadbod-completion' } 
+
+	-- Allows simple navigation through databases and saving queries for later use via vim-dadbod
+	use { 'kristijanhusak/vim-dadbod-ui', config = [[require('config.vim-dadbod-ui')]] }
+
+	------------------------------------------------------------------------------------------------
 	-- SUBSECTION: LaTeX
 	-- DESC: Plugins for LaTeX specific usage
 	------------------------------------------------------------------------------------------------
