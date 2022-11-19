@@ -120,7 +120,9 @@ require 'lspconfig'.r_language_server.setup({
 	on_attach = on_attach,
 	flags = lsp_defaults,
 	cmd = { 'R', '--slave', '--no-init-file', '-e', 'renv::activate(); languageserver::run()' },
-	root_dir = require 'lspconfig'.util.root_pattern(".Rprofile")
+	root_dir = function(fname)    
+        	return vim.loop.cwd()
+    	end,
 })
 
 require 'lspconfig'.sumneko_lua.setup {
