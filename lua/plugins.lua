@@ -70,6 +70,13 @@ return require('packer').startup(function(use)
 	-- Git integration for buffers [CONFIGURED]
 	use { 'lewis6991/gitsigns.nvim', config = [[require('config.gitsigns')]] }
 
+	-- For focussing on a selected region
+	use { 'chrisbra/NrrwRgn' }
+
+	-- Make your nvim window separators colorful
+	-- TODO: Open issue on this not being compatible with Goyo
+	-- use { 'nvim-zh/colorful-winsep.nvim', config = [[require('config.colorful-winsep')]] }
+
 	-- Neovim plugin to centre your buffer by creating a persistent scratchpad [CONFIGURED]
 	use { 'FraserLee/ScratchPad', config = [[require('config.scratchpad')]] }
 
