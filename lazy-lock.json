@@ -1,0 +1,4 @@
+{
+  "julia-vim": { "branch": "master", "commit": "69dd4b076b9b4f863647b424f856bbe6d5ba0cd4" },
+  "lazy.nvim": { "branch": "main", "commit": "5af331ea65418dc9361769891921fdee4bcc837a" }
+}

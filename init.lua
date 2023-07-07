@@ -1,3 +1,30 @@
-require("options")
-require("plugins")
--- require("config.user.julia-runner")
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not vim.loop.fs_stat(lazypath) then
+	vim.fn.system({
+		"git",
+		"clone",
+		"--filter=blob:none",
+		"https://github.com/folke/lazy.nvim.git",
+		"--branch=stable",
+		lazypath
+	})
+end
+vim.opt.rtp:prepend(lazypath)
+
+require('lazy').setup("plugins", {
+  performance = {
+    rtp = {
+      paths = {
+        vim.fn.stdpath("config") .. "/core",
+        vim.fn.stdpath("config") .. "/plugins"
+      }
+  }
+  }
+})
+
+package.path = package.path .. ';' .. vim.fn.stdpath("config") .. '/?.lua'
+vim.o.runtimepath = vim.o.runtimepath .. ',' .. vim.fn.stdpath("config") .. "/core/lua"
+require("core.lua.functions")
+require("core.lua.options")
+require("core.lua.autocommands")
+require("core.lua.keymaps")
