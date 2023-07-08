@@ -1,0 +1,3 @@
+[submodule "lua/core"]
+	path = lua/core
+	url = git@github.com:TheCedarPrince/Service.git
