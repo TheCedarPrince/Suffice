@@ -21,3 +21,6 @@ require("core.lua.autocommands")
 require("core.lua.keymaps")
 
 require("autocommands")
+
+-- Some minor visual improvements
+vim.api.nvim_set_hl(0, "TabLineFill", { bg = "black" })
