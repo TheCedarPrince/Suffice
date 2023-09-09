@@ -22,5 +22,5 @@ require("core.lua.keymaps")
 
 require("autocommands")
 
--- Some minor visual improvements
-vim.api.nvim_set_hl(0, "TabLineFill", { bg = none })
+vim.keymap.set('t', '<Esc>', "<C-\\><C-n>", {silent = true})
+
