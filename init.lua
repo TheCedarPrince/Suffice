@@ -11,6 +11,8 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 
+vim.g.python3_host_prog = '/home/thecedarprince/Programs/Miniconda3/envs/neovim/bin/python'
+
 require('lazy').setup({{import = "plugins"}, {import = "core.lua.plugins"}})
 
 package.path = package.path .. ';' .. vim.fn.stdpath("config") .. '/?.lua'
