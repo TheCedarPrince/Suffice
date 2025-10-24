@@ -7,6 +7,7 @@ return {
     vim.g.vimtex_compiler_method = 'latexmk'
     vim.g.vimtex_compiler_latexmk = {
       options = {
+        '-lualatex',
         '-bibtex',
         '-shell-escape',
         '-verbose',
@@ -15,6 +16,6 @@ return {
         '-interaction=nonstopmode'
       }
     }
-    vim.g.vimtex_fold_enabled = 1
+    vim.g.vimtex_fold_enabled = 0
   end
 }
