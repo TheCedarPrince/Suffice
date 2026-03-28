@@ -23,11 +23,12 @@ dashboard.section.header.opts.hl = ""
 
 -- Set menu
 dashboard.section.buttons.val = {
-    dashboard.button( "e", "  > New file" , ":ene <BAR> startinsert <CR>"),
-    dashboard.button( "f", "  > Find file", ":cd $HOME/Workspace | Telescope find_files<CR>"),
-    dashboard.button( "r", "  > Recent"   , ":Telescope oldfiles<CR>"),
-    dashboard.button( "s", "  > Settings" , ":e $MYVIMRC | :cd %:p:h | split . | wincmd k | pwd<CR>"),
-    dashboard.button( "q", "  > Quit NVIM", ":qa<CR>"),
+    dashboard.button( "s", "> Select Workspace" , ":CtrlSpace<CR>"),
+    dashboard.button( "b", "> Browse Files", ":FzfLua files<CR>"),
+    dashboard.button( "r", "> Recent Files"   , ":FzfLua oldfiles<CR>"),
+    dashboard.button( "c", "> Neovim Config" , ":e $MYVIMRC | :cd %:p:h | split . | wincmd k | pwd<CR>"),
+    dashboard.button( "t", "> Open Floaterm"   , ":FloatermNew --height=0.4 --position=bottom --wintype=split<CR>"),
+    dashboard.button( "q", "> Quit Neovim", ":qa<CR>")
 }
 
 -- Send config to alpha
