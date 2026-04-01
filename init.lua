@@ -24,6 +24,4 @@ require("core.lua.keymaps")
 require("core.lua.colors")
 require("core.lua.bar")
 
-require("autocommands")
-
 vim.keymap.set('t', '<Esc>', "<C-\\><C-n>", {silent = true})
