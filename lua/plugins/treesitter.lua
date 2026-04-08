@@ -1,37 +1,41 @@
 return {
   {
-    "nvim-treesitter/nvim-treesitter", -- Smarter code understanding like syntax Highlight and navigation
+    "nvim-treesitter/nvim-treesitter",
     build = ":TSUpdate",
     dependencies = {
-      "nvim-treesitter/nvim-treesitter-textobjects", -- Syntax aware text-objects, select, move, swap, and peek support.
+      "folke/which-key.nvim",
+      "nvim-treesitter/nvim-treesitter-textobjects",
       {
-        "abecodes/tabout.nvim", -- Tab out from parenthesis, quotes, brackets...
+        "abecodes/tabout.nvim",
         opts = {
-          tabkey = "<Tab>", -- key to trigger tabout, set to an empty string to disable
-          backwards_tabkey = "<S-Tab>", -- key to trigger backwards tabout, set to an empty string to disable
-          completion = true, -- We use tab for completion so set this to true
+          tabkey = "<Tab>",
+          backwards_tabkey = "<S-Tab>",
+          completion = true,
         },
       },
     },
     config = function()
       require("nvim-treesitter.configs").setup({
-        ensure_installed = {"markdown", "yaml", "julia"},
+        ensure_installed = { "markdown", "yaml", "julia" },
+        highlight = {
+          enable = true,
+          additional_vim_regex_highlighting = false,
+        },
+        indent = { enable = true },
         incremental_selection = {
           enable = true,
           keymaps = {
-            init_selection = "<M-w>",
+            init_selection    = "<M-w>",
             scope_incremental = "<CR>",
-            node_incremental = "<Tab>", -- increment to the upper named parent
-            node_decremental = "<S-Tab>", -- decrement to the previous node
+            node_incremental  = "<Tab>",
+            node_decremental  = "<S-Tab>",
           },
         },
         textobjects = {
           select = {
-            enable = true,
-            lookahead = true, -- Automatically jump forward to textobj, similar to targets.vim
-
+            enable    = true,
+            lookahead = true,
             keymaps = {
-              -- Use v[keymap], c[keymap], d[keymap] to perform any operation
               ["af"] = "@function.outer",
               ["if"] = "@function.inner",
               ["ac"] = "@class.outer",
@@ -39,6 +43,6 @@ return {
           },
         },
       })
-    end
-  }
+    end,
+  },
 }
