@@ -210,7 +210,15 @@ vim.cmd([[
 local alpha_start_group = vim.api.nvim_create_augroup("AlphaStart", { clear = true })
 vim.api.nvim_create_autocmd("TabNewEntered", {
     callback = function()
-        alpha.start()
+        -- Don't open alpha if Goyo is active or if the buffer already has content
+        if vim.g.goyo_id then return end
+        local buf = vim.api.nvim_get_current_buf()
+        local name = vim.api.nvim_buf_get_name(buf)
+        local lines = vim.api.nvim_buf_get_lines(buf, 0, -1, false)
+        local is_empty = name == "" and #lines == 1 and lines[1] == ""
+        if is_empty then
+            alpha.start()
+        end
     end,
     group = alpha_start_group,
 })
