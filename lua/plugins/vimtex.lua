@@ -1,5 +1,6 @@
 return {
   "lervag/vimtex",
+  commit = "182ad387e3f3107699483606c9a2b6648f8437b2",
   lazy = false,
   config = function()
     -- ── Viewer & compiler ─────────────────────────────────────────────────

@@ -2,6 +2,7 @@
 
 return {
   "JuliaEditorSupport/julia-vim",
+  commit = "52b30547346b21bc93acda28d626795667f9e087",
   lazy = false,
   config = function()
     -- LaTeX-to-Unicode (tab completion stays on, auto-replace on)

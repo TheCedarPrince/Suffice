@@ -1,5 +1,6 @@
 return {
   "kristijanhusak/vim-dadbod-ui",
+  commit = "07e92e22114cc5b1ba4938d99897d85b58e20475",
   lazy = false, 
   config = function()
     vim.g.db_ui_save_location = '~/.config/nvim/queries' -- Path to folder where all connections and saved queries will be stored
